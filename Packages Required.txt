@@ -1,0 +1,5 @@
+Type the following in cmd :
+
+pip install spacy
+spacy download xx_ent_wiki_sm
+pip install pdfminer.six
