@@ -62,7 +62,7 @@ def extract_names(resume_text):
 # driver function
 if __name__ == '__main__':
 
-    resume_text = extract_text_from_pdf('./resume.pdf')
+    resume_text = extract_text_from_pdf('./Sample_Resume.pdf')
 
     list_of_emails = extract_emails(resume_text)
 
