@@ -32,6 +32,8 @@ from pdfminer.high_level import extract_text
 # '.' operator followed by 'com' or 'co.in' or 'co.xx'.
 EMAIL_PATTERN = re.compile(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+')
 
+PHONE_NUMBER_PATTERN = re.compile(r'(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})')
+
 
 
 # Function to extract text from the resume
@@ -43,6 +45,11 @@ def extract_text_from_pdf(path) :
 # Function to extract the list of all emails present in the resume
 def extract_emails(resume_text):
     return re.findall(EMAIL_PATTERN, resume_text)
+
+
+# Function to extract the list of all phone numbers present in the resume
+def extract_phone_numbers(resume_text):
+    return re.findall(PHONE_NUMBER_PATTERN, resume_text)
 
 
 
@@ -66,11 +73,20 @@ if __name__ == '__main__':
 
     list_of_emails = extract_emails(resume_text)
 
-
     # The first email that appears above others is generally the applicant’s actual email address,
     # since people tend to place their contact details in the header section of their resumes.
     if len(list_of_emails) > 0 :
         print('Applicants Email Address : ' + list_of_emails[0])
+
+
+
+
+    list_of_phone_numbers = extract_phone_numbers(resume_text)
+
+    if len(list_of_phone_numbers) > 0 :
+        print('Applicants Phone Number : ' + list_of_phone_numbers[0])
+
+
 
 
     person_names = extract_names(resume_text)
